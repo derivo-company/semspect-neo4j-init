@@ -57,7 +57,8 @@ def _run_configurations(configurations):
         logger.info('All Configurations succeeded')
         return True
     else:
-        logger.error(f'There were errors during the execution of following configurations: {faulty_configurations}')
+        logger.error(f'There were {len(faulty_configurations)} errors during the execution of following '
+                     f'configurations: {faulty_configurations}')
         return False
 
 
@@ -65,7 +66,7 @@ def _run_configuration(driver: Neo4jDriver, configuration: Configuration):
     """Run one configuration with given driver"""
     logger.debug(f'Running configuration {configuration}')
     with driver.session(database=configuration.database, impersonated_user=configuration.user) as session:
-        _run_procedure(session, configuration.procedure)
+        return _run_procedure(session, configuration.procedure)
 
 
 def _run_procedure(session, procedure):
@@ -75,11 +76,13 @@ def _run_procedure(session, procedure):
         status_code = record['status']
         if status_code != procedure.expected_status_code:
             logger.error(
-                f'Returned status {status_code} code didn\'t match expected status code {procedure.expected_status_code}. Error: {record["errors"]}')
+                f'Returned status {status_code} code did not match expected {procedure.expected_status_code}.'
+                f'Error: {record["errors"]}')
             return False
         return True
     except Neo4jError as err:
         logger.error(f'Received neo4j error {err}')
+        return False
 
 
 def _create_driver() -> Neo4jDriver:
