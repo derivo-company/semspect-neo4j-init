@@ -40,6 +40,6 @@ In practice this means that we grant one the user the right to impersonate all s
 ## to install the dependencies
 poetry install
 ##to run the script
-poetry run init_semspect
+poetry run run_example
 ```
 
