@@ -1,7 +1,3 @@
-from builtins import function
-from typing import List
-
-from neo4j import Neo4jDriver
 from dataclasses import dataclass
 import logging
 
@@ -39,7 +35,7 @@ class SemspectProcedures:
     SEMSPECT_RELOAD_NO_WRITE = SemspectProcedure(f'{SEMSPECT_RELOAD.name}NoWrite', 200)
 
 
-def run_configurations(driver_factory: function, configurations: List[Configuration]):
+def run_configurations(driver_factory, configurations):
     """Run given configurations with given driver
     :param driver_factory : driver_factory returning a Neo4jDriver
     :param configurations: List of configurations to run
