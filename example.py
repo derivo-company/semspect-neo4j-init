@@ -20,7 +20,7 @@ def main():
         # call reload for user Charly
         Configuration(procedure=SemspectProcedures.SEMSPECT_RELOAD, user="Charly", database="neo4j"),
         # call reload for user  Derek that has no write privileges
-        Configuration(procedure=SemspectProcedures.SEMSPECT_RELOAD, user="Derek", database="neo4j")
+        Configuration(procedure=SemspectProcedures.SEMSPECT_RELOAD_NO_WRITE, user="Derek", database="neo4j")
     ]
 
     # hard coded driver_factory that connects as our impersonate user 'initUser'
