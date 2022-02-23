@@ -2,7 +2,7 @@
 name = "init_semspect"
 version = "0.1.0"
 description = ""
-authors = ["mo <opitz@derivo.de>"]
+authors = ["Michael Opitz <opitz@derivo.de>", "Thorsten Liebig <liebig@derivo.de>", "Vincent Vialard <vialard@derivo.de>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -16,5 +16,5 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.poetry.scripts]
-init_semspect = "init_semspect:main"
+run_example = "example:main"
 
