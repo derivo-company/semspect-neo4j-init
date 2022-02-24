@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 import logging
 
-from neo4j.exceptions import Neo4jError
+from neo4j.exceptions import Neo4jError, DriverError
 
 logging.basicConfig()
 logger = logging.getLogger("init_semspect")
@@ -68,6 +68,6 @@ def _run_procedure(session, procedure):
                 f'Error: {record["errors"]}')
             return False
         return True
-    except Neo4jError as err:
+    except (Neo4jError,DriverError) as err:
         logger.error(f'Received neo4j error {err}')
         return False
