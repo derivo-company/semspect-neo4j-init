@@ -28,10 +28,10 @@ In practice this means that we grant one the user the right to impersonate all s
 
 1. Create an `initUser` : This will be the user that impersonates the semspect users. 
 `CREATE USER initUser SET PLAINTEXT PASSWORD 'secret_password' CHANGE NOT REQUIRED`
-2. Create an `impersonateSemspectUser` role: `CREATE ROLE impersonateSemspectUser`
-3. Grant the `impersonateSemspectUser` role to the `initUser`: `GRANT ROLE impersonateSemspectUser TO initUser`
-4. Grant impersonate privilege for all semspectUsers to the `impersonateSemspectUser` role:
-`GRANT IMPERSONATE ($SEMSPECT_USER) ON DBMS TO impersonateSemspectUser`
+2. Create an `semspectImpersonatorRole` role: `CREATE ROLE semspectImpersonatorRole`
+3. Grant the `semspectImpersonatorRole` role to the `initUser`: `GRANT ROLE semspectImpersonatorRole TO initUser`
+4. Grant impersonate privilege for all semspect users to the `semspectImpersonatorRole` role:
+`GRANT IMPERSONATE ($SEMSPECT_USER1[,...]) ON DBMS TO semspectImpersonatorRole`
 
 ### Running the script
 
