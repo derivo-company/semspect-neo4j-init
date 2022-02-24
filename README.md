@@ -27,7 +27,7 @@ In practice this means that we grant one the user the right to impersonate all s
 ### Setup Neo4j
 
 1. Create an `initUser` : This will be the user that impersonates the semspect users. 
-`CREATE USER initUser SET PLAINTEXT PASSWORD 'secret_password' CHANGE NOT REQUIRED
+`CREATE USER initUser SET PLAINTEXT PASSWORD 'secret_password' CHANGE NOT REQUIRED`
 2. Create an `impersonateSemspectUser` role: `CREATE ROLE impersonateSemspectUser`
 3. Grant the `impersonateSemspectUser` role to the `initUser`: `GRANT ROLE impersonateSemspectUser TO initUser`
 4. Grant impersonate privilege for all semspectUsers to the `impersonateSemspectUser` role:
