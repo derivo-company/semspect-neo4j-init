@@ -26,7 +26,10 @@ In practice this means that we grant one the user the right to impersonate all s
 
 * python 3.8 (or later)
 * poetry (for dependency management): https://python-poetry.org/docs/
-* neo4j server 4.4 (or later)
+* neo4j-enterprise-server 4.4 (or later).
+* semspect-server-installation: https://doc.semspect.de/docs/neo4j-graph-app/server-configuration/
+
+(neo4j community edition not supported because there are no roles in neo4j community edition)
 
 ## Usage
 
