@@ -22,6 +22,12 @@ From https://neo4j.com/docs/cypher-manual/current/access-control/dbms-administra
 
 In practice this means that we grant one the user the right to impersonate all semspectUsers that we want to initialize.
 
+## System Requirements
+
+* python 3.8 (or later)
+* poetry (for dependency management): https://python-poetry.org/docs/
+* neo4j server 4.4 (or later)
+
 ## Usage
 
 ### Setup Neo4j
