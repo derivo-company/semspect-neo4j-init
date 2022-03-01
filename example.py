@@ -25,7 +25,7 @@ def main():
 
     # hard coded driver_factory that connects as our impersonate user 'initUser'
     def driver_factory() -> Neo4jDriver:
-        return GraphDatabase.driver('neo4j://localhost:7687', auth=('initUser', 'my_secret'))
+        return GraphDatabase.driver('neo4j://localhost:7687', auth=('initUser', 'secret_password'))
 
     # run given configurations with given neo4jDriver. The run_configurations method returns a set of configurations that were not executed successfully
     faulty_configurations = init_semspect.run_configurations(driver_factory, example_configurations)
