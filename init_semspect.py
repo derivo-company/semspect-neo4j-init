@@ -22,7 +22,6 @@ class SemspectProcedure:
 @dataclass(frozen=True)
 class Configuration:
     """What configuration should be called for what user on what database"""
-    procedure: SemspectProcedure
     user: str
     database: str
 
@@ -52,10 +51,34 @@ def run_configurations(driver_factory, configurations):
 
 def _run_configuration(driver, configuration):
     """Run one configuration with given driver"""
-    logger.debug(f'Running configuration {configuration}')
     with driver.session(database=configuration.database, impersonated_user=configuration.user) as session:
-        return _run_procedure(session, configuration.procedure)
-
+        # we first suppose the user has write privileges (necessary for semspect labels) and try a simple reload.
+        # if it returns the expected code either reload was not necessary or it worked
+        # if it does not return the expected code, we try again without write privileges
+        # if this also fails, we try the initialisation first with, then without write privileges
+        logger.info(f'Trying reload...')
+        if _run_procedure(session, SemspectProcedures.SEMSPECT_RELOAD):
+            # reload worked with write privileges
+            logger.info(f'Done.')
+            return True
+        logger.info(f'Trying reload without write privileges...')
+        if _run_procedure(session, SemspectProcedures.SEMSPECT_RELOAD_NO_WRITE):
+            # reload worked without write privileges
+            logger.info(f'Done.')
+            return True
+        logger.info(f'Trying init...')
+        if _run_procedure(session, SemspectProcedures.SEMSPECT_INIT):
+            # init worked with write privileges
+            logger.debug(f'Done.')
+            return True
+        logger.info(f'Trying init without write privileges...')
+        if _run_procedure(session, SemspectProcedures.SEMSPECT_INIT_NO_WRITE):
+            # init worked without write privileges
+            logger.info(f'Done.')
+            return True
+        # as well reload as init failed both with and without write privileges
+        logger.info(f'Configuration {configuration} failed')
+        return False
 
 def _run_procedure(session, procedure):
     try:
@@ -63,11 +86,11 @@ def _run_procedure(session, procedure):
         logger.debug(f'Received answer {record}')
         status_code = record['status']
         if status_code != procedure.expected_status_code:
-            logger.error(
+            logger.debug(
                 f'Returned status {status_code} code did not match expected {procedure.expected_status_code}.'
                 f'Error: {record["errors"]}')
             return False
         return True
-    except (Neo4jError,DriverError) as err:
+    except (Neo4jError, DriverError) as err:
         logger.error(f'Received neo4j error {err}')
         return False
