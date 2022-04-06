@@ -4,7 +4,7 @@ import sys
 from neo4j import GraphDatabase, Neo4jDriver
 
 import init_semspect
-from init_semspect import Configuration, UserTypes
+from init_semspect import Configuration
 
 logging.basicConfig()
 logger = logging.getLogger("init_semspect")
@@ -14,9 +14,9 @@ logger.setLevel(level=logging.INFO)
 def main():
     example_configurations = [
         # call init for user alice on database neo4j
-        Configuration(user_type=UserTypes.READ_WRITE, user="Alice", database="neo4j"),
-        # call init for user bob that has no write privileges on neo4j database
-        Configuration(user_type=UserTypes.READ_ONLY, user="Bob", database="neo4j"),
+        Configuration(user="Alice", database="neo4j"),
+        # call init for user bob on database neo4j
+        Configuration(user="Bib", database="neo4j"),
     ]
 
     # hard coded driver_factory that connects as our impersonate user 'initUser'
