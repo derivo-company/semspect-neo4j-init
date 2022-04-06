@@ -53,8 +53,8 @@ def _run_configuration(driver, configuration):
     """Run one configuration with given driver"""
     with driver.session(database=configuration.database, impersonated_user=configuration.user) as session:
         # we first suppose the user has write privileges (necessary for semspect labels) and try a simple reload.
-        # if it returns the expected code either reload was not necessary or it worked
-        # if it does not return the expected code, we try again without write privileges
+        # if this succeeds either reload was not necessary or it worked
+        # if it does not succeed, we try again without write privileges
         # if this also fails, we try the initialisation first with, then without write privileges
         logger.info(f'Trying reload...')
         if _run_procedure(session, SemspectProcedures.SEMSPECT_RELOAD):

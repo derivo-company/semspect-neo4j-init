@@ -16,7 +16,7 @@ def main():
         # call init for user alice on database neo4j
         Configuration(user="Alice", database="neo4j"),
         # call init for user bob on database neo4j
-        Configuration(user="Bib", database="neo4j"),
+        Configuration(user="Bob", database="neo4j"),
     ]
 
     # hard coded driver_factory that connects as our impersonate user 'initUser'
