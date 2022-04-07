@@ -1,6 +1,8 @@
-# init_semspect
+# SemSpect Initialization for Neo4j Server
 
 A python script that demonstrates how to trigger SemSpect initialization for different users.
+
+SemSpect is an interactive exploration tool for Neo4j databases. See www.semspect.de for details.
 
 ## Use Case
 
