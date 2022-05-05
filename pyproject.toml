@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "semspect-neo4j-init"
-version = "0.1.0"
+version = "1.0.0"
 description = ""
 authors = ["Michael Opitz <opitz@derivo.de>", "Thorsten Liebig <liebig@derivo.de>", "Vincent Vialard <vialard@derivo.de>"]
 
