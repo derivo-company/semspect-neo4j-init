@@ -26,7 +26,7 @@ In practice this means that we grant one dedicated (technical) user the right to
 
 * Python 3.8 (or later)
 * Poetry (for dependency management): https://python-poetry.org/docs/
-* Neo4j Enterprise Server v5.1.0 (or later).
+* Neo4j Enterprise Server v4.4.0 (or later).
 * A server installation of the Semspect Neo4j Graph App: https://doc.semspect.de/docs/neo4j-graph-app/server-configuration/
 
 (The Neo4j community edition is not supported because there are no roles in the Neo4j community edition)
