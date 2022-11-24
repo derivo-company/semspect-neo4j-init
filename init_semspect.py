@@ -52,7 +52,7 @@ def run_configurations(driver_factory, configurations):
 def _run_configuration(driver, configuration):
     """Run one configuration with given driver"""
     with driver.session(database=configuration.database, impersonated_user=configuration.user) as session:
-        # we first suppose the user has write privileges (necessary for semspect labels) and try a simple reload.
+        # we first suppose the user has write-privileges (necessary for semspect labels) and try a simple reload.
         # if this succeeds either reload was not necessary or it worked
         # if it does not succeed, we try again without write privileges
         # if this also fails, we try the initialisation first with, then without write privileges
@@ -79,6 +79,7 @@ def _run_configuration(driver, configuration):
         # as well reload as init failed both with and without write privileges
         logger.info(f'Configuration {configuration} failed')
         return False
+
 
 def _run_procedure(session, procedure):
     try:

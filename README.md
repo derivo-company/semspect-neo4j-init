@@ -26,7 +26,7 @@ In practice this means that we grant one dedicated (technical) user the right to
 
 * Python 3.8 (or later)
 * Poetry (for dependency management): https://python-poetry.org/docs/
-* Neo4j Enterprise Server v4.4 (or later).
+* Neo4j Enterprise Server v5.1.0 (or later).
 * A server installation of the Semspect Neo4j Graph App: https://doc.semspect.de/docs/neo4j-graph-app/server-configuration/
 
 (The Neo4j community edition is not supported because there are no roles in the Neo4j community edition)
@@ -45,6 +45,8 @@ In practice this means that we grant one dedicated (technical) user the right to
 ```GRANT IMPERSONATE (semspectUser1[,...]) ON DBMS TO semspectImpersonatorRole```
 
 ### Configuration of initialization tasks
+
+See example.py .
 
 1. Specify the Neo4j DBMS and impersonating user as part of the Neo4j driver connection:  
 ```GraphDatabase.driver('neo4j://localhost:7687', auth=('initUser', 'secret_password'))```
